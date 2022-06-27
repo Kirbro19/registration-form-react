@@ -44,29 +44,29 @@ const App = () => {
 
   // HandleFocus
 
-  const handleSurnameFocus = (e) => {
+  const handleSurnameFocus = () => {
     setSurnameInvalid(false);
     setSurnameValid(false);
   };
 
-  const handleNameFocus = (e) => {
+  const handleNameFocus = () => {
     setNameInvalid(false);
     setNameValid(false);
   };
 
-  const handlePhoneFocus = (e) => {
+  const handlePhoneFocus = () => {
     setPhoneInvalid(false);
     setPhoneValid(false);
   };
 
-  const handleEmailFocus = (e) => {
+  const handleEmailFocus = () => {
     setEmailInvalid(false);
     setEmailValid(false);
   };
 
   // HandleBlur
 
-  const handleSurnameBlur = (e) => {
+  const handleSurnameBlur = () => {
     if (surname.length === 0) {
       setSurnameInvalid(true);
     } else {
@@ -74,7 +74,7 @@ const App = () => {
     }
   };
 
-  const handleNameBlur = (e) => {
+  const handleNameBlur = () => {
     if (name.length === 0) {
       setNameInvalid(true);
     } else {
@@ -82,7 +82,7 @@ const App = () => {
     }
   };
 
-  const handlePhoneBlur = (e) => {
+  const handlePhoneBlur = () => {
     if (phone.length === 0) {
       setPhoneInvalid(true);
     } else {
@@ -90,7 +90,7 @@ const App = () => {
     }
   };
 
-  const handleEmailBlur = (e) => {
+  const handleEmailBlur = () => {
     if (email.length === 0) {
       setEmailInvalid(true);
     } else {
@@ -112,9 +112,7 @@ const App = () => {
   const [phoneValid, setPhoneValid] = useState(false);
   const [emailValid, setEmailValid] = useState(false);
 
-  const wrongSubmit = (
-    <FormFeedback className="wrong">Ошибка заполнения!</FormFeedback>
-  );
+  const [wrongSubmit, setWrongSubmit] = useState();
 
   const handleSubmit = (e) => {
     if (
@@ -125,8 +123,8 @@ const App = () => {
     ) {
       alert("Готово");
     } else {
-      e.preventDefault();
-      return wrongSubmit;
+      e.preventDefault()
+      setWrongSubmit('Ошибка заполнения!');
     }
     e.preventDefault();
   };
@@ -136,7 +134,7 @@ const App = () => {
       <div className="title-block">
         <h1 className="title">Регистрация</h1>
         <h2 className="subtitle">
-          Уже есть аккаунт? <a href="#">Войти</a>
+          Уже есть аккаунт? <a href="#entry">Войти</a>
         </h2>
       </div>
 
@@ -247,7 +245,7 @@ const App = () => {
           Отправить
         </Button>
       </FormGroup>
-      {wrongSubmit}
+      <div className="wrong-submit">{wrongSubmit}</div>
     </Form>
   );
 };
